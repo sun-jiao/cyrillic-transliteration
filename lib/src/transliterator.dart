@@ -1,6 +1,6 @@
 import "mapping.dart";
 
-String cyrillic2Latin(String stringToTransliterate, {String langCode = 'sr'}) {
+String cyr2Lat(String stringToTransliterate, {String langCode = 'sr'}) {
 // ''' Transliterate cyrillic string of characters to latin string of characters.
 //     :param string_to_transliterate: The cyrillic string to transliterate into latin characters.
 //     :param lang_code: Indicates the cyrillic language code we are translating from. Defaults to Serbian (sr).
@@ -41,7 +41,7 @@ String cyrillic2Latin(String stringToTransliterate, {String langCode = 'sr'}) {
   return latinizedStr;
 }
 
-String latin2Cyrillic(String stringToTransliterate, {String langCode = 'sr'}) {
+String lat2Cyr(String stringToTransliterate, {String langCode = 'sr'}) {
 // ''' Transliterate latin string of characters to cyrillic string of characters.
 //     :param string_to_transliterate: The latin string to transliterate into cyrillic characters.
 //     :param lang_code: Indicates the cyrillic language code we are translating to. Defaults to Serbian (sr).
@@ -195,5 +195,6 @@ List supported() {
 // ''' Returns list of supported languages, sorted alphabetically.
 //     :return:
 //     '''
+  mappingInit();
   return translitDict.keys.toList();
 }

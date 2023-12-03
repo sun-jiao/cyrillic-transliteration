@@ -1,4 +1,4 @@
-import 'package:cyrillic/cyrillic.dart';
+import 'package:cyrtranslit/cyrtranslit.dart';
 import 'package:test/test.dart';
 
 // Test inputs and output strings
@@ -43,158 +43,158 @@ final mixCharactersAllLatinNoAlpha = '\'Ć<=>?ćUuFfHhCcČčDž%4džŠ12š♥';
 void main() {
   group('Test Serbian Transliteration From Cyrillic To Latin', () {
     test('Transliteration of entire Serbian cyrillic alphabet to latin.', () {
-      final transliteratedSerbianAlphabet = cyrillic2Latin(serbianAlphabetCyrillic);
+      final transliteratedSerbianAlphabet = cyr2Lat(serbianAlphabetCyrillic);
       expect(transliteratedSerbianAlphabet, equals(serbianAlphabetLatin));
     });
 
     test('Special characters should remain the same.', () {
-      final transliteratedSpecialChars = cyrillic2Latin(specialChars);
+      final transliteratedSpecialChars = cyr2Lat(specialChars);
       expect(transliteratedSpecialChars, equals(specialChars));
     });
 
     test('Diacritic characters should remain the same.', () {
-      final transliteratedDiacriticChars = cyrillic2Latin(diacriticChars);
+      final transliteratedDiacriticChars = cyr2Lat(diacriticChars);
       expect(transliteratedDiacriticChars, equals(diacriticChars));
     });
 
     test('Numerical characters should remain the same.', () {
-      final transliteratedNumericalChars = cyrillic2Latin(numericalChars);
+      final transliteratedNumericalChars = cyr2Lat(numericalChars);
       expect(transliteratedNumericalChars, equals(numericalChars));
     });
 
     test('Alphabet characters should remain the same.', () {
-      final transliteratedAlphabetChars = cyrillic2Latin(alphabetChars);
+      final transliteratedAlphabetChars = cyr2Lat(alphabetChars);
       expect(transliteratedAlphabetChars, equals(alphabetChars));
     });
 
     test('Serbian cyrillic characters should be transliterated but non-Serbian cyrillic ones should not.', () {
-      final transliteratedMix = cyrillic2Latin(mixCharactersSomeCyrillic);
+      final transliteratedMix = cyr2Lat(mixCharactersSomeCyrillic);
       expect(transliteratedMix, equals(mixCharactersAllLatin));
     });
   });
 
   group('Test Serbian Transliteration From Latin To Cyrillic', () {
     test('Transliteration of entire Serbian cyrillic alphabet to latin.', () {
-      final transliteratedSerbianAlphabet = cyrillic2Latin(serbianAlphabetCyrillic);
+      final transliteratedSerbianAlphabet = cyr2Lat(serbianAlphabetCyrillic);
       expect(transliteratedSerbianAlphabet, equals(serbianAlphabetLatin));
     });
 
     test('Special characters should remain the same.', () {
-      final transliteratedSpecialChars = cyrillic2Latin(specialChars);
+      final transliteratedSpecialChars = cyr2Lat(specialChars);
       expect(transliteratedSpecialChars, equals(specialChars));
     });
 
     test('Diacritic characters should remain the same.', () {
-      final transliteratedDiacriticChars = cyrillic2Latin(diacriticChars);
+      final transliteratedDiacriticChars = cyr2Lat(diacriticChars);
       expect(transliteratedDiacriticChars, equals(diacriticChars));
     });
 
     test('Numerical characters should remain the same.', () {
-      final transliteratedNumericalChars = cyrillic2Latin(numericalChars);
+      final transliteratedNumericalChars = cyr2Lat(numericalChars);
       expect(transliteratedNumericalChars, equals(numericalChars));
     });
 
     test('Serbian cyrillic characters should be transliterated but non-Serbian cyrillic ones should not.', () {
-      final transliteratedMix = latin2Cyrillic(mixCharactersAllLatinNoAlpha);
+      final transliteratedMix = lat2Cyr(mixCharactersAllLatinNoAlpha);
       expect(transliteratedMix, equals(mixCharactersSomeCyrillicNoAlpha));
     });
   });
 
   group('Test Montenegrin Transliteration', () {
     test('Transliteration of entire cyrillic alphabet to latin.', () {
-      final transliteratedAlphabet = cyrillic2Latin(montenegrinAlphabetCyrillic, langCode: 'me');
+      final transliteratedAlphabet = cyr2Lat(montenegrinAlphabetCyrillic, langCode: 'me');
       expect(transliteratedAlphabet, equals(montenegrinAlphabetLatin));
     });
 
     test('Transliteration of entire latin alphabet to cyrillic.', () {
-      final transliteratedAlphabet = latin2Cyrillic(montenegrinAlphabetLatin, langCode: 'me');
+      final transliteratedAlphabet = lat2Cyr(montenegrinAlphabetLatin, langCode: 'me');
       expect(transliteratedAlphabet, equals(montenegrinAlphabetCyrillic));
     });
   });
 
   group('Test Macedonian Transliteration', () {
     test('Transliteration of entire cyrillic alphabet to latin.', () {
-      final transliteratedAlphabet = cyrillic2Latin(macedonianAlphabetCyrillic, langCode: 'mk');
+      final transliteratedAlphabet = cyr2Lat(macedonianAlphabetCyrillic, langCode: 'mk');
       expect(transliteratedAlphabet, equals(macedonianAlphabetLatin));
     });
 
     test('Transliteration of entire latin alphabet to cyrillic.', () {
-      final transliteratedAlphabet = latin2Cyrillic(macedonianAlphabetLatin, langCode: 'mk');
+      final transliteratedAlphabet = lat2Cyr(macedonianAlphabetLatin, langCode: 'mk');
       expect(transliteratedAlphabet, equals(macedonianAlphabetCyrillic));
     });
   });
 
   group('Test Russian Transliteration', () {
     test('Transliteration of entire cyrillic alphabet to latin.', () {
-      final transliteratedAlphabet = cyrillic2Latin(russianAlphabetCyrillic, langCode: 'ru');
+      final transliteratedAlphabet = cyr2Lat(russianAlphabetCyrillic, langCode: 'ru');
       expect(transliteratedAlphabet, equals(russianAlphabetLatin));
     });
 
     test('Transliteration of entire latin alphabet to cyrillic.', () {
-      final transliteratedAlphabet = latin2Cyrillic(russianAlphabetLatin, langCode: 'ru');
+      final transliteratedAlphabet = lat2Cyr(russianAlphabetLatin, langCode: 'ru');
       expect(transliteratedAlphabet, equals(russianAlphabetCyrillic.replaceAll('Ъ', 'ъ').replaceAll('Ь', 'ь').replaceAll('Ы', 'ы')));
     });
   });
 
   group('Test Tajik Transliteration', () {
     test('Transliteration of entire cyrillic alphabet to latin.', () {
-      final transliteratedAlphabet = cyrillic2Latin(tajikAlphabetCyrillic, langCode: 'tj');
+      final transliteratedAlphabet = cyr2Lat(tajikAlphabetCyrillic, langCode: 'tj');
       expect(transliteratedAlphabet, equals(tajikAlphabetLatin));
     });
 
     test('Transliteration of entire latin alphabet to cyrillic.', () {
-      final transliteratedAlphabet = latin2Cyrillic(tajikAlphabetLatin, langCode: 'tj');
+      final transliteratedAlphabet = lat2Cyr(tajikAlphabetLatin, langCode: 'tj');
       expect(transliteratedAlphabet, equals(tajikAlphabetCyrillic));
     });
   });
 
   group('Test Ukrainian Transliteration', () {
     test('Transliteration of entire cyrillic alphabet to latin.', () {
-      final transliteratedAlphabet = cyrillic2Latin(ukrainianAlphabetCyrillic, langCode: 'ua');
+      final transliteratedAlphabet = cyr2Lat(ukrainianAlphabetCyrillic, langCode: 'ua');
       expect(transliteratedAlphabet, equals(ukrainianAlphabetLatin));
     });
 
     test('Transliteration of entire latin alphabet to cyrillic.', () {
-      final transliteratedAlphabet = latin2Cyrillic(ukrainianAlphabetLatin, langCode: 'ua');
+      final transliteratedAlphabet = lat2Cyr(ukrainianAlphabetLatin, langCode: 'ua');
       expect(transliteratedAlphabet, equals(ukrainianAlphabetCyrillic));
     });
 
     test('Diacritic characters should remain the same.', () {
-      final transliteratedDiacriticChars = cyrillic2Latin(diacriticChars, langCode: 'tj');
+      final transliteratedDiacriticChars = cyr2Lat(diacriticChars, langCode: 'tj');
       expect(transliteratedDiacriticChars, equals(diacriticChars));
     });
 
     test('Numerical characters should remain the same.', () {
-      final transliteratedNumericalChars = cyrillic2Latin(numericalChars, langCode: 'tj');
+      final transliteratedNumericalChars = cyr2Lat(numericalChars, langCode: 'tj');
       expect(transliteratedNumericalChars, equals(numericalChars));
     });
   });
 
   group('Test Bulgarian Transliteration', () {
     test('Transliteration of entire cyrillic alphabet to latin.', () {
-      final transliteratedAlphabet = cyrillic2Latin(bulgarianAlphabetCyrillic, langCode: 'bg');
+      final transliteratedAlphabet = cyr2Lat(bulgarianAlphabetCyrillic, langCode: 'bg');
       expect(transliteratedAlphabet, equals(bulgarianAlphabetLatin));
     });
 
     test('Transliteration of entire latin alphabet to cyrillic.', () {
-      final transliteratedAlphabet = latin2Cyrillic(bulgarianAlphabetLatin, langCode: 'bg');
+      final transliteratedAlphabet = lat2Cyr(bulgarianAlphabetLatin, langCode: 'bg');
       expect(transliteratedAlphabet, equals(bulgarianAlphabetCyrillic));
     });
 
     test('Check if "sh" at the end of the string doesn\'t cause any exception.', () {
-      final transliteratedAlphabet = latin2Cyrillic("AaBbsh", langCode: 'bg');
+      final transliteratedAlphabet = lat2Cyr("AaBbsh", langCode: 'bg');
       expect(transliteratedAlphabet, equals("АаБбш"));
     });
   });
 
   group('Test Mongolian Transliteration From Cyrillic To Latin', () {
     test('Transliteration of entire Mongolian cyrillic alphabet to latin.', () {
-      final transliteratedMongolianAlphabet = cyrillic2Latin(mongolianAlphabetCyrillic, langCode: 'mn');
+      final transliteratedMongolianAlphabet = cyr2Lat(mongolianAlphabetCyrillic, langCode: 'mn');
       expect(transliteratedMongolianAlphabet, equals(mongolianAlphabetLatin));
     });
 
     test('Transliteration of entire latin alphabet to cyrillic.', () {
-      final transliteratedMongolianAlphabet = latin2Cyrillic(mongolianAlphabetLatin, langCode: 'mn');
+      final transliteratedMongolianAlphabet = lat2Cyr(mongolianAlphabetLatin, langCode: 'mn');
       expect(transliteratedMongolianAlphabet, equals(mongolianAlphabetCyrillic));
     });
   });

@@ -1,49 +1,7 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
-```dart
-const like = 'sample';
-```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
-
---------------------------------------------------
-
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7734906.svg)](https://doi.org/10.5281/zenodo.7734906)
 
 ## What is CyrTranslit?
-A Python package for bi-directional transliteration of Cyrillic script to Latin script and vice versa.
+A Dart package for bi-directional transliteration of Cyrillic script to Latin script and vice versa.
 
 By default, transliterates for the Serbian language. A language flag can be set in order to transliterate to and from Bulgarian, Montenegrin, Macedonian, Mongolian, Russian, Serbian, Tajik, and Ukrainian.
 
@@ -51,6 +9,8 @@ By default, transliterates for the Serbian language. A language flag can be set 
 Transliteration is the conversion of a text from one script to another. For instance, a Latin alphabet transliteration of the Serbian phrase _"Мој ховеркрафт је пун јегуља"_ is _"Moj hoverkraft je pun jegulja"_.
 
 ## Citation
+This package is based on the [Python project cyrillic-transliteration](https://github.com/opendatakosovo/cyrillic-transliteration) which was originally authored by Open Data Kosovo.
+
 A citation would be much appreciated if you use CyrTranslit in a research publication:
 
 [Georges Labrèche. (2023). CyrTranslit (v1.1.1). Zenodo. https://doi.org/10.5281/zenodo.7734906](https://doi.org/10.5281/zenodo.7734906)
@@ -88,139 +48,110 @@ CyrTranslit is actively used as a reliable tool to advance research! Here's an i
 - Жабран, И., Кикоть, А., Гафияк, А., Бородина, Е., & Алёшин, С. (2017). "[Developing Q-Orca site backend using various Python programming language libraries](https://www.moderntechno.de/index.php/meit/article/view/meit07-03-021)," Modern Engineering and Innovative Technologies, 3(07-03), 48–53.
 
 ## How do I install this?
-CyrTranslit is [hosted in the Python Package Index (PyPI)](https://pypi.python.org/pypi/cyrtranslit) so it can be installed using pip:
+CyrTranslit is [Dart pub repository](https://pub.dev/packages/cyrtranslit) so it can be installed using pub add:
 ```
-python -m pip install cyrtranslit         # latest version
-python -m pip install cyrtranslit==1.1.1  # specific version
-python -m pip install cyrtranslit>=1.1.1  # minimum version
+dart pub add cyrtranslit          # latest version
+dart pub add cyrtranslit: version   # specific version
+dart pub add cyrtranslit:'^version'  # minimum version
+```
+
+or you can also add this package to your `pubspec.yaml` file.
+```yaml
+dependencies:
+  cyrtranslit: ^1.0.0
 ```
 
 ## What languages are supported?
 CyrTranslit currently supports bi-directional transliteration of Bulgarian, Montenegrin, Macedonian, Mongolian, Russian, Serbian, Tajik, and Ukrainian:
-```python
->>> import cyrtranslit
->>> cyrtranslit.supported()
+```dart
+import 'package:cyrtranslit/cyrtranslit.dart' as cyrtranslit;
+print(cyrtranslit.supported())
 ['bg', 'me', 'mk', 'mn', 'ru', 'sr', 'tj', 'ua']
 ```
 ## How do I use this?
-CyrTranslit can be used both programatically and via command line interface.
-
-### Programmatically
-#### Bulgarian
-```python
->>> import cyrtranslit
->>> cyrtranslit.to_latin("Съединението прави силата!", "bg")
+### Bulgarian
+```dart
+import 'package:cyrtranslit/cyrtranslit.dart' as cyrtranslit;
+print(cyrtranslit.cyr2Lat("Съединението прави силата!", langCode: "bg"))
 "Săedinenieto pravi silata!"
->>> cyrtranslit.to_cyrillic("Săedinenieto pravi silata!", "bg")
+print(cyrtranslit.lat2Cyr("Săedinenieto pravi silata!", langCode: "bg"))
 "Съединението прави силата!"
 ```
 
-#### Montenegrin
-```python
->>> import cyrtranslit
->>> cyrtranslit.to_latin("Република", "me")
+### Montenegrin
+```dart
+import 'package:cyrtranslit/cyrtranslit.dart' as cyrtranslit;
+print(cyrtranslit.cyr2Lat("Република", langCode: "me"))
 "Republika"
->>> cyrtranslit.to_cyrillic("Republika", "me")
+print(cyrtranslit.lat2Cyr("Republika", langCode: "me"))
 "Република"
 ```
 
-#### Macedonian
-```python
->>> import cyrtranslit
->>> cyrtranslit.to_latin("Моето летачко возило е полно со јагули", "mk")
+### Macedonian
+```dart
+import 'package:cyrtranslit/cyrtranslit.dart' as cyrtranslit;
+print(cyrtranslit.cyr2Lat("Моето летачко возило е полно со јагули", langCode: "mk"))
 "Moeto letačko vozilo e polno so jaguli"
->>> cyrtranslit.to_cyrillic("Moeto letačko vozilo e polno so jaguli", "mk")
+print(cyrtranslit.lat2Cyr("Moeto letačko vozilo e polno so jaguli", langCode: "mk"))
 "Моето летачко возило е полно со јагули"
 ```
 
-#### Mongolian
-```python
->>> import cyrtranslit
->>> cyrtranslit.to_latin("Амрагаа Сүнжидмаагаа гэсээр ирлээ дээ хө-хө-хө", "mn")
+### Mongolian
+```dart
+import 'package:cyrtranslit/cyrtranslit.dart' as cyrtranslit;
+print(cyrtranslit.cyr2Lat("Амрагаа Сүнжидмаагаа гэсээр ирлээ дээ хө-хө-хө", langCode: "mn"))
 "Amragaa Sünjidmaagaa geseer irlee dee khö-khö-khö"
->>> cyrtranslit.to_cyrillic("Amragaa Sünjidmaagaa geseer irlee dee khö-khö-khö", "mn")
+print(cyrtranslit.lat2Cyr("Amragaa Sünjidmaagaa geseer irlee dee khö-khö-khö", langCode: "mn"))
 "Амрагаа Сүнжидмаагаа гэсээр ирлээ дээ хө-хө-хө"
 ```
 
-#### Russian
-```python
->>> import cyrtranslit
->>> cyrtranslit.to_latin("Моё судно на воздушной подушке полно угрей", "ru")
+### Russian
+```dart
+import 'package:cyrtranslit/cyrtranslit.dart' as cyrtranslit;
+print(cyrtranslit.cyr2Lat("Моё судно на воздушной подушке полно угрей", langCode: "ru"))
 "Moyo sudno na vozdushnoj podushke polno ugrej"
->>> cyrtranslit.to_cyrillic("Moyo sudno na vozdushnoj podushke polno ugrej", "ru")
+print(cyrtranslit.lat2Cyr("Moyo sudno na vozdushnoj podushke polno ugrej", langCode: "ru"))
 "Моё судно на воздушной подушке полно угрей"
 ```
 
-#### Serbian
-```python
->>> import cyrtranslit
->>> cyrtranslit.to_latin("Мој ховеркрафт је пун јегуља")
+### Serbian
+```dart
+import 'package:cyrtranslit/cyrtranslit.dart' as cyrtranslit;
+print(cyrtranslit.cyr2Lat("Мој ховеркрафт је пун јегуља"))
 "Moj hoverkraft je pun jegulja"
->>> cyrtranslit.to_cyrillic("Moj hoverkraft je pun jegulja")
+print(cyrtranslit.lat2Cyr("Moj hoverkraft je pun jegulja"))
 "Мој ховеркрафт је пун јегуља"
 ```
 
-#### Tajik
-```python
->>> import cyrtranslit
->>> cyrtranslit.to_latin("Ман мактуб навишта истодам", "tj")
+### Tajik
+```dart
+import 'package:cyrtranslit/cyrtranslit.dart' as cyrtranslit;
+print(cyrtranslit.cyr2Lat("Ман мактуб навишта истодам", langCode: "tj"))
 "Man maktub navišta istodam"
->>> cyrtranslit.to_cyrillic("Man maktub navišta istodam", "tj")
+print(cyrtranslit.lat2Cyr("Man maktub navišta istodam", langCode: "tj"))
 "Ман мактуб навишта истодам"
 ```
 
-#### Ukrainian
-```python
->>> import cyrtranslit
->>> cyrtranslit.to_latin("Під лежачий камінь вода не тече", "ua")
+### Ukrainian
+```dart
+import 'package:cyrtranslit/cyrtranslit.dart' as cyrtranslit;
+print(cyrtranslit.cyr2Lat("Під лежачий камінь вода не тече", langCode: "ua"))
 "Pid ležačyj kamin' voda ne teče"
->>> cyrtranslit.to_cyrillic("Pid ležačyj kamin' voda ne teče", "ua")
+print(cyrtranslit.lat2Cyr("Pid ležačyj kamin' voda ne teče", langCode: "ua"))
 "Під лежачий камінь вода не тече"
 ```
-
-## Command Line Interface
-Sample command line call to transliterate a Russian text file:
-```bash
-$ cyrtranslit -l RU -i tests/ru.txt -o tests/output.txt
-```
-
-Use the -c argument to accomplish the reverse, that is to input latin characters and output cyrillic.
-
-Use the -h argument for help.
-
-You can also omit the input and output files and use standard input/output
-```bash
-$ echo 'Мој ховеркрафт је пун јегуља' | cyrtranslit -l sr
-Moj hoverkraft je pun jegulja
-$ echo 'Moj hoverkraft je pun jegulja' | cyrtranslit -l sr
-Мој ховеркрафт је пун јегуља
-```
-
-You can test the "script" by running it directly on the Python command line interface, e.g.:
-```python
->>> import sys
->>> import cyrtranslit.cyrtranslit
->>> sys.argv.extend(['-l', 'RU'])
->>> sys.argv.extend(['-i', 'tests/ru.txt'])
->>> sys.argv.extend(['-o', 'tests/output.txt'])
->>> cyrtranslit.cyrtranslit.main()
->>> exit()
-```
-
 
 ## How can I contribute?
 You can include support for other Cyrillic script alphabets. Follow these steps in order to do so:
 
-1. Create a new transliteration dictionary in the **[mapping.py](https://github.com/opendatakosovo/cyrillic-transliteration/blob/master/cyrtranslit/mapping.py)** file and reference to it in the _**[TRANSLIT\_DICT](https://github.com/opendatakosovo/cyrillic-transliteration/blob/ab88bb466d12b9a9ad8d3eb6dc86d0bab871175d/cyrtranslit/mapping.py#L326-L360)**_ dictionary.
-2. Watch out for cases where two consecutive Latin alphabet letters are meant to transliterate into a single Cyrillic script letter. These cases need to be explicitly checked for [inside the **to_cyrillic()** function in **\_\_init\_\_.py**](https://github.com/opendatakosovo/cyrillic-transliteration/blob/ab88bb466d12b9a9ad8d3eb6dc86d0bab871175d/cyrtranslit/__init__.py#L62-L191).
-3. Add test cases inside of **[tests.py](https://github.com/opendatakosovo/cyrillic-transliteration/blob/master/tests.py)**.
-4. Add test CLI input files in the **[tests](https://github.com/opendatakosovo/cyrillic-transliteration/tree/master/tests)** directory.
-5. Update the documentation in the **[README.md](https://github.com/opendatakosovo/cyrillic-transliteration/blob/master/README.md)**.
-6. List yourself as one of the contributors.
+1. Create a new transliteration dictionary in the **[mapping.dart](https://github.com/sun-jiao/cyrillic-transliteration/blob/f4e2834589d67d32597debd9f95b5859fae650e0/lib/src/mapping.dart#L435-L476)**_ dictionary.
+2. Watch out for cases where two consecutive Latin alphabet letters are meant to transliterate into a single Cyrillic script letter. These cases need to be explicitly checked for [inside the **lat2Cyr()** function in **transliterator.dart**](https://github.com/sun-jiao/cyrillic-transliteration/blob/f4e2834589d67d32597debd9f95b5859fae650e0/lib/src/transliterator.dart#L44-L192).
+3. Add test cases inside of **[cyrtranslit_test.dart](https://github.com/sun-jiao/cyrillic-transliteration/blob/master/test/cyrtranslit_test.dart)**.
+4. Update the documentation in the **[README.md](https://github.com/sun-jiao/cyrillic-transliteration/blob/master/README.md)**.
+5. List yourself as one of the contributors.
 
-Before tagging a release version and deploying to [PyPI](https://pypi.org/):
-1. Update the `version` and `download_url` properties in [setup.py](https://github.com/opendatakosovo/cyrillic-transliteration/blob/master/setup.py).
-2. [Reserve a Zenodo DOI](https://cassgvp.github.io/github-for-collaborative-documentation/docs/tut/6-Zenodo-integration.html) for the release and update this readme's Zenodo badge and [citation instructions](https://github.com/opendatakosovo/cyrillic-transliteration#citation).
+Before tagging a release version and deploying to [pub.dev](https://pub.dev/):
+1. Update the `version` properties in [pubspec.yaml](https://github.com/sun-jiao/cyrillic-transliteration/blob/master/pubspec.yaml).
 
 A big thank you to everyone who contributed:
 - Bulgarian 🇧🇬: [@Syndamia](https://github.com/Syndamia) and [@Sparkycz](https://github.com/Sparkycz).
@@ -228,4 +159,4 @@ A big thank you to everyone who contributed:
 - Tajik 🇹🇯: [@diejani](https://github.com/diejani).
 - Ukrainian 🇺🇦: [@AnonymousVoice1](https://github.com/AnonymousVoice1).
 - Mongolian 🇲🇳: [@Serbipunk](https://github.com/Serbipunk).
-- Command Line Interface (CLI): [@ZJaume](https://github.com/ZJaume).
+- Command Line Interface (CLI, Not implemented in dart package): [@ZJaume](https://github.com/ZJaume).
