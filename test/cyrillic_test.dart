@@ -95,7 +95,7 @@ void main() {
       expect(transliterated_numerical_chars, equals(numerical_chars));
     });
 
-    test('Serbian cyrillic characters should be transliterated but non-Serbian cyrillic ones shouldn\'t.', () {
+    test('Serbian cyrillic characters should be transliterated but non-Serbian cyrillic ones should not.', () {
       final transliterated_mix = latin2Cyrillic(mix_characters_all_latin_no_alpha);
       expect(transliterated_mix, equals(mix_characters_some_cyrillic_no_alpha));
     });

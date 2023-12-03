@@ -26,7 +26,7 @@ void mappingInit() {
 
   // Build the dictionaries to transliterate Serbian cyrillic to latin and vice versa.
 
-// This dictionary is to transliterate from cyrillic to latin.
+  // This dictionary is to transliterate from cyrillic to latin.
   SR_CYR_TO_LAT_DICT = {
     'А': 'A',
     'а': 'a',
@@ -425,8 +425,10 @@ void mappingInit() {
   };
   MN_LAT_TO_CYR_DICT = MN_CYR_TO_LAT_DICT.kvSwap();
   MN_LAT_TO_CYR_DICT.addAll({
-    "И": "I",
-    "и": "i",
+    "I": "И",
+    "i": "и",
+    "Sh": "Ш",
+    "sh": "ш",
   });
 
 // Bundle up all the dictionaries in a lookup dictionary

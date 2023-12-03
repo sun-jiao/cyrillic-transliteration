@@ -3,7 +3,7 @@
 /// More dartdocs go here.
 library;
 
-export 'src/init.dart';
+export 'src/transliterator.dart';
 
 // TODO: Export any libraries intended for clients of this package.
 
