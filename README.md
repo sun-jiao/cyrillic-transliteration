@@ -144,8 +144,8 @@ print(cyrtranslit.lat2Cyr("Pid ležačyj kamin' voda ne teče", langCode: "ua"))
 ## How can I contribute?
 You can include support for other Cyrillic script alphabets. Follow these steps in order to do so:
 
-1. Create a new transliteration dictionary in the **[mapping.dart](https://github.com/sun-jiao/cyrillic-transliteration/blob/f4e2834589d67d32597debd9f95b5859fae650e0/lib/src/mapping.dart#L435-L476)**_ dictionary.
-2. Watch out for cases where two consecutive Latin alphabet letters are meant to transliterate into a single Cyrillic script letter. These cases need to be explicitly checked for [inside the **lat2Cyr()** function in **transliterator.dart**](https://github.com/sun-jiao/cyrillic-transliteration/blob/f4e2834589d67d32597debd9f95b5859fae650e0/lib/src/transliterator.dart#L44-L192).
+1. Create a new transliteration dictionary in the **[mapping.dart](https://github.com/sun-jiao/cyrillic-transliteration/blob/83efe7056b1af29c73d1b2dff853bf0972f3d220/lib/src/mapping.dart#L435-L476)**_ dictionary.
+2. Watch out for cases where two consecutive Latin alphabet letters are meant to transliterate into a single Cyrillic script letter. These cases need to be explicitly checked for [inside the **lat2Cyr()** function in **transliterator.dart**](https://github.com/sun-jiao/cyrillic-transliteration/blob/83efe7056b1af29c73d1b2dff853bf0972f3d220/lib/src/transliterator.dart#L44-L192).
 3. Add test cases inside of **[cyrtranslit_test.dart](https://github.com/sun-jiao/cyrillic-transliteration/blob/master/test/cyrtranslit_test.dart)**.
 4. Update the documentation in the **[README.md](https://github.com/sun-jiao/cyrillic-transliteration/blob/master/README.md)**.
 5. List yourself as one of the contributors.
@@ -154,9 +154,10 @@ Before tagging a release version and deploying to [pub.dev](https://pub.dev/):
 1. Update the `version` properties in [pubspec.yaml](https://github.com/sun-jiao/cyrillic-transliteration/blob/master/pubspec.yaml).
 
 A big thank you to everyone who contributed:
+- Original python package: Members of [@opendatakosovo](https://github.com/opendatakosovo).
 - Bulgarian 🇧🇬: [@Syndamia](https://github.com/Syndamia) and [@Sparkycz](https://github.com/Sparkycz).
 - Russian 🇷🇺: [@ratijas](https://github.com/ratijas) and [@rominf](https://github.com/rominf).
 - Tajik 🇹🇯: [@diejani](https://github.com/diejani).
 - Ukrainian 🇺🇦: [@AnonymousVoice1](https://github.com/AnonymousVoice1).
 - Mongolian 🇲🇳: [@Serbipunk](https://github.com/Serbipunk).
-- Command Line Interface (CLI, Not implemented in dart package): [@ZJaume](https://github.com/ZJaume).
+- Command Line Interface (CLI): [@ZJaume](https://github.com/ZJaume) (Not implemented in dart package).
