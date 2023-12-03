@@ -1,23 +1,23 @@
 import 'package:deepcopy/deepcopy.dart';
 
 bool isInited = false;
-late Map SR_CYR_TO_LAT_DICT;
-late Map SR_LAT_TO_CYR_DICT;
-late Map ME_CYR_TO_LAT_DICT;
-late Map ME_LAT_TO_CYR_DICT;
-late Map MK_CYR_TO_LAT_DICT;
-late Map MK_LAT_TO_CYR_DICT;
-late Map RU_CYR_TO_LAT_DICT;
-late Map RU_LAT_TO_CYR_DICT;
-late Map TJ_CYR_TO_LAT_DICT;
-late Map TJ_LAT_TO_CYR_DICT;
-late Map BG_CYR_TO_LAT_DICT;
-late Map BG_LAT_TO_CYR_DICT;
-late Map UA_CYR_TO_LAT_DICT;
-late Map UA_LAT_TO_CYR_DICT;
-late Map MN_CYR_TO_LAT_DICT;
-late Map MN_LAT_TO_CYR_DICT;
-late Map TRANSLIT_DICT;
+late Map srCyr2lat;
+late Map srLat2Cyr;
+late Map meCyr2Lat;
+late Map meLat2Cyr;
+late Map mkCyr2Lat;
+late Map mkLat2Cyr;
+late Map ruCyr2Lat;
+late Map ruLat2Cyr;
+late Map tjCyr2Lat;
+late Map tjLat2Cyr;
+late Map bgCyr2Lat;
+late Map bgLat2Cyr;
+late Map uaCyr2Lat;
+late Map uaLat2Cyr;
+late Map mnCyr2Lat;
+late Map mnLat2Cyr;
+late Map translitDict;
 
 void mappingInit() {
   if (isInited) {
@@ -27,7 +27,7 @@ void mappingInit() {
   // Build the dictionaries to transliterate Serbian cyrillic to latin and vice versa.
 
   // This dictionary is to transliterate from cyrillic to latin.
-  SR_CYR_TO_LAT_DICT = {
+  srCyr2lat = {
     'А': 'A',
     'а': 'a',
     'Б': 'B',
@@ -92,7 +92,7 @@ void mappingInit() {
 
 // This dictionary is to transliterate from Serbian latin to cyrillic.
 // Let's build it by simply swapping keys and values of previous dictionary.
-  SR_LAT_TO_CYR_DICT = SR_CYR_TO_LAT_DICT.kvSwap();
+  srLat2Cyr = srCyr2lat.kvSwap();
 
 // Build the dictionaries to transliterate Montenegrin cyrillic to latin and vice versa.
 
@@ -102,45 +102,45 @@ void mappingInit() {
 // These, respectively, could also be represented in the original alphabets as šj and žj, and шj and жj.
 // Source: https://en.wikipedia.org/wiki/Montenegrin_alphabet#Latin_alphabet
 // Also see: http://news.bbc.co.uk/2/hi/8520466.stm
-  ME_CYR_TO_LAT_DICT = SR_CYR_TO_LAT_DICT.deepcopy();
+  meCyr2Lat = srCyr2lat.deepcopy();
 
-  ME_CYR_TO_LAT_DICT.addAll({
+  meCyr2Lat.addAll({
     'С́': 'Ś', 'с́': 'ś', // Montenegrin
     'З́': 'Ź', 'з́': 'ź' // Montenegrin
   });
 
 // This dictionary is to transliterate from Montenegrin latin to cyrillic.
-  ME_LAT_TO_CYR_DICT = ME_CYR_TO_LAT_DICT.kvSwap();
+  meLat2Cyr = meCyr2Lat.kvSwap();
 
 // Build the dictionaries to transliterate Macedonian cyrillic to latin and vice versa.
-  MK_CYR_TO_LAT_DICT = SR_CYR_TO_LAT_DICT.deepcopy();
+  mkCyr2Lat = srCyr2lat.deepcopy();
 
 // Differences with Serbian:
 // 1) Between Ze (З з) and I (И и) is the letter Dze (Ѕ ѕ), which looks like the Latin letter S and represents /d͡z/.
-  MK_CYR_TO_LAT_DICT['Ѕ'] = 'Dz';
-  MK_CYR_TO_LAT_DICT['ѕ'] = 'dz';
+  mkCyr2Lat['Ѕ'] = 'Dz';
+  mkCyr2Lat['ѕ'] = 'dz';
 
 // 2) Dje (Ђ ђ) is replaced by Gje (Ѓ ѓ), which represents /ɟ/ (voiced palatal stop).
 // In some dialects, it represents /d͡ʑ/ instead, like Dje
 // It is written ⟨Ǵ ǵ⟩ in the corresponding Macedonian Latin alphabet.
-  MK_CYR_TO_LAT_DICT.remove('Ђ');
-  MK_CYR_TO_LAT_DICT.remove('ђ');
-  MK_CYR_TO_LAT_DICT['Ѓ'] = 'Ǵ';
-  MK_CYR_TO_LAT_DICT['ѓ'] = 'ǵ';
+  mkCyr2Lat.remove('Ђ');
+  mkCyr2Lat.remove('ђ');
+  mkCyr2Lat['Ѓ'] = 'Ǵ';
+  mkCyr2Lat['ѓ'] = 'ǵ';
 
 // 3) Tshe (Ћ ћ) is replaced by Kje (Ќ ќ), which represents /c/ (voiceless palatal stop).
 // In some dialects, it represents /t͡ɕ/ instead, like Tshe.
 // It is written ⟨Ḱ ḱ⟩ in the corresponding Macedonian Latin alphabet.
-  MK_CYR_TO_LAT_DICT.remove('Ћ');
-  MK_CYR_TO_LAT_DICT.remove('ћ');
-  MK_CYR_TO_LAT_DICT['Ќ'] = 'Ḱ';
-  MK_CYR_TO_LAT_DICT['ќ'] = 'ḱ';
+  mkCyr2Lat.remove('Ћ');
+  mkCyr2Lat.remove('ћ');
+  mkCyr2Lat['Ќ'] = 'Ḱ';
+  mkCyr2Lat['ќ'] = 'ḱ';
 
 // This dictionary is to transliterate from Macedonian latin to cyrillic.
-  MK_LAT_TO_CYR_DICT = MK_CYR_TO_LAT_DICT.kvSwap();
+  mkLat2Cyr = mkCyr2Lat.kvSwap();
 
 // This dictionary is to transliterate from Russian cyrillic to latin (GOST_7.79-2000 System B).
-  RU_CYR_TO_LAT_DICT = {
+  ruCyr2Lat = {
     "А": "A",
     "а": "a",
     "Б": "B",
@@ -210,8 +210,8 @@ void mappingInit() {
   };
 
 // This dictionary is to transliterate from Russian latin to cyrillic.
-  RU_LAT_TO_CYR_DICT = RU_CYR_TO_LAT_DICT.kvSwap();
-  RU_LAT_TO_CYR_DICT.addAll({
+  ruLat2Cyr = ruCyr2Lat.kvSwap();
+  ruLat2Cyr.addAll({
     "''": "ъ",
     "'": "ь",
     "C": "К", "c": "к",
@@ -236,36 +236,36 @@ void mappingInit() {
   });
 
 // Transliterate from Tajik cyrillic to latin
-  TJ_CYR_TO_LAT_DICT = RU_CYR_TO_LAT_DICT.deepcopy();
+  tjCyr2Lat = ruCyr2Lat.deepcopy();
 // Change Mapping according to ISO 9 (1995)
-  TJ_CYR_TO_LAT_DICT["Э"] = "È";
-  TJ_CYR_TO_LAT_DICT["э"] = "è";
-  TJ_CYR_TO_LAT_DICT["ъ"] = "’";
-  TJ_CYR_TO_LAT_DICT["Х"] = "H";
-  TJ_CYR_TO_LAT_DICT["х"] = "h";
-  TJ_CYR_TO_LAT_DICT["Ч"] = "Č";
-  TJ_CYR_TO_LAT_DICT["ч"] = "č";
-  TJ_CYR_TO_LAT_DICT["Ж"] = "Ž";
-  TJ_CYR_TO_LAT_DICT["ж"] = "ž";
-  TJ_CYR_TO_LAT_DICT["Ё"] = "Ë";
-  TJ_CYR_TO_LAT_DICT["ё"] = "ë";
-  TJ_CYR_TO_LAT_DICT["Ш"] = "Š";
-  TJ_CYR_TO_LAT_DICT["ш"] = "š";
-  TJ_CYR_TO_LAT_DICT["Ю"] = "Û";
-  TJ_CYR_TO_LAT_DICT["ю"] = "û";
-  TJ_CYR_TO_LAT_DICT["Я"] = "Â";
-  TJ_CYR_TO_LAT_DICT["я"] = "â";
+  tjCyr2Lat["Э"] = "È";
+  tjCyr2Lat["э"] = "è";
+  tjCyr2Lat["ъ"] = "’";
+  tjCyr2Lat["Х"] = "H";
+  tjCyr2Lat["х"] = "h";
+  tjCyr2Lat["Ч"] = "Č";
+  tjCyr2Lat["ч"] = "č";
+  tjCyr2Lat["Ж"] = "Ž";
+  tjCyr2Lat["ж"] = "ž";
+  tjCyr2Lat["Ё"] = "Ë";
+  tjCyr2Lat["ё"] = "ë";
+  tjCyr2Lat["Ш"] = "Š";
+  tjCyr2Lat["ш"] = "š";
+  tjCyr2Lat["Ю"] = "Û";
+  tjCyr2Lat["ю"] = "û";
+  tjCyr2Lat["Я"] = "Â";
+  tjCyr2Lat["я"] = "â";
 // delete letters not used
-  TJ_CYR_TO_LAT_DICT.remove("Ц");
-  TJ_CYR_TO_LAT_DICT.remove("ц");
-  TJ_CYR_TO_LAT_DICT.remove("Щ");
-  TJ_CYR_TO_LAT_DICT.remove("щ");
-  TJ_CYR_TO_LAT_DICT.remove("Ы");
-  TJ_CYR_TO_LAT_DICT.remove("ы");
+  tjCyr2Lat.remove("Ц");
+  tjCyr2Lat.remove("ц");
+  tjCyr2Lat.remove("Щ");
+  tjCyr2Lat.remove("щ");
+  tjCyr2Lat.remove("Ы");
+  tjCyr2Lat.remove("ы");
 
 // update the dict for the additional letters in the tajik cyrillic alphabet ( Ғ, Ӣ, Қ, Ӯ, Ҳ, Ҷ )
 // see https://en.wikipedia.org/wiki/Tajik_alphabet//Cyrillic
-  TJ_CYR_TO_LAT_DICT.addAll({
+  tjCyr2Lat.addAll({
     "Ғ": "Ǧ",
     "ғ": "ǧ",
     "Ӣ": "Ī",
@@ -281,44 +281,44 @@ void mappingInit() {
   });
 
 // transliterate from latin tajik to cyrillic
-  TJ_LAT_TO_CYR_DICT = TJ_CYR_TO_LAT_DICT.kvSwap();
+  tjLat2Cyr = tjCyr2Lat.kvSwap();
 
 // Transliterate from Bulgarian cyrillic to latin
-  BG_CYR_TO_LAT_DICT = RU_CYR_TO_LAT_DICT.deepcopy();
+  bgCyr2Lat = ruCyr2Lat.deepcopy();
 
 // There are a couple of letters that don't exist in Bulgarian:
-  BG_CYR_TO_LAT_DICT.remove("Ё");
-  BG_CYR_TO_LAT_DICT.remove("ё");
-  BG_CYR_TO_LAT_DICT.remove("Ы");
-  BG_CYR_TO_LAT_DICT.remove("ы");
-  BG_CYR_TO_LAT_DICT.remove("Э");
-  BG_CYR_TO_LAT_DICT.remove("э");
+  bgCyr2Lat.remove("Ё");
+  bgCyr2Lat.remove("ё");
+  bgCyr2Lat.remove("Ы");
+  bgCyr2Lat.remove("ы");
+  bgCyr2Lat.remove("Э");
+  bgCyr2Lat.remove("э");
 
 // Some letters that are pronounced differently
-  BG_CYR_TO_LAT_DICT["Й"] = "Y";
-  BG_CYR_TO_LAT_DICT["й"] = "y";
-  BG_CYR_TO_LAT_DICT["Х"] = "H";
-  BG_CYR_TO_LAT_DICT["х"] = "h";
-  BG_CYR_TO_LAT_DICT["Ц"] = "TS";
-  BG_CYR_TO_LAT_DICT["ц"] = "ts";
-  BG_CYR_TO_LAT_DICT["Щ"] = "SHT";
-  BG_CYR_TO_LAT_DICT["щ"] = "sht";
-  BG_CYR_TO_LAT_DICT["Ю"] = "YU";
-  BG_CYR_TO_LAT_DICT["ю"] = "yu";
-  BG_CYR_TO_LAT_DICT["Я"] = "YA";
-  BG_CYR_TO_LAT_DICT["я"] = "ya";
+  bgCyr2Lat["Й"] = "Y";
+  bgCyr2Lat["й"] = "y";
+  bgCyr2Lat["Х"] = "H";
+  bgCyr2Lat["х"] = "h";
+  bgCyr2Lat["Ц"] = "TS";
+  bgCyr2Lat["ц"] = "ts";
+  bgCyr2Lat["Щ"] = "SHT";
+  bgCyr2Lat["щ"] = "sht";
+  bgCyr2Lat["Ю"] = "YU";
+  bgCyr2Lat["ю"] = "yu";
+  bgCyr2Lat["Я"] = "YA";
+  bgCyr2Lat["я"] = "ya";
 // The following letters use the pre-2012 "Andreichin" system for lettering,
 // because in the newest "Ivanov" system "a" and "y" translate to two Bulgarian
 // letters and choosing to which one depends on the word and text context
 // https://en.wikipedia.org/wiki/Romanization_of_Bulgarian
-  BG_CYR_TO_LAT_DICT["Ъ"] = "Ă";
-  BG_CYR_TO_LAT_DICT["ъ"] = "ă";
-  BG_CYR_TO_LAT_DICT["Ь"] = "J";
-  BG_CYR_TO_LAT_DICT["ь"] = "j";
+  bgCyr2Lat["Ъ"] = "Ă";
+  bgCyr2Lat["ъ"] = "ă";
+  bgCyr2Lat["Ь"] = "J";
+  bgCyr2Lat["ь"] = "j";
 
 // Transliterate from latin Bulgarian to cyrillic.
-  BG_LAT_TO_CYR_DICT = BG_CYR_TO_LAT_DICT.kvSwap();
-  BG_LAT_TO_CYR_DICT.addAll({
+  bgLat2Cyr = bgCyr2Lat.kvSwap();
+  bgLat2Cyr.addAll({
     "ZH": "Ж",
     "Zh": "Ж",
     "zh": "ж",
@@ -343,50 +343,50 @@ void mappingInit() {
   });
 
 // Transliterate from Ukrainian
-  UA_CYR_TO_LAT_DICT = RU_CYR_TO_LAT_DICT.deepcopy();
+  uaCyr2Lat = ruCyr2Lat.deepcopy();
 // Change mapping to match with Scientific Ukrainian
-  UA_CYR_TO_LAT_DICT["Г"] = "H";
-  UA_CYR_TO_LAT_DICT["г"] = "h";
-  UA_CYR_TO_LAT_DICT["Ж"] = "Ž";
-  UA_CYR_TO_LAT_DICT["ж"] = "ž";
-  UA_CYR_TO_LAT_DICT["И"] = "Y";
-  UA_CYR_TO_LAT_DICT["и"] = "y";
-  UA_CYR_TO_LAT_DICT["Х"] = "X";
-  UA_CYR_TO_LAT_DICT["х"] = "x";
-  UA_CYR_TO_LAT_DICT["Ц"] = "C";
-  UA_CYR_TO_LAT_DICT["ц"] = "c";
-  UA_CYR_TO_LAT_DICT["Ч"] = "Č";
-  UA_CYR_TO_LAT_DICT["ч"] = "č";
-  UA_CYR_TO_LAT_DICT["Ш"] = "Š";
-  UA_CYR_TO_LAT_DICT["ш"] = "š";
-  UA_CYR_TO_LAT_DICT["Щ"] = "Šč";
-  UA_CYR_TO_LAT_DICT["щ"] = "šč";
-  UA_CYR_TO_LAT_DICT["Ю"] = "Ju";
-  UA_CYR_TO_LAT_DICT["ю"] = "ju";
-  UA_CYR_TO_LAT_DICT["Я"] = "Ja";
-  UA_CYR_TO_LAT_DICT["я"] = "ja";
+  uaCyr2Lat["Г"] = "H";
+  uaCyr2Lat["г"] = "h";
+  uaCyr2Lat["Ж"] = "Ž";
+  uaCyr2Lat["ж"] = "ž";
+  uaCyr2Lat["И"] = "Y";
+  uaCyr2Lat["и"] = "y";
+  uaCyr2Lat["Х"] = "X";
+  uaCyr2Lat["х"] = "x";
+  uaCyr2Lat["Ц"] = "C";
+  uaCyr2Lat["ц"] = "c";
+  uaCyr2Lat["Ч"] = "Č";
+  uaCyr2Lat["ч"] = "č";
+  uaCyr2Lat["Ш"] = "Š";
+  uaCyr2Lat["ш"] = "š";
+  uaCyr2Lat["Щ"] = "Šč";
+  uaCyr2Lat["щ"] = "šč";
+  uaCyr2Lat["Ю"] = "Ju";
+  uaCyr2Lat["ю"] = "ju";
+  uaCyr2Lat["Я"] = "Ja";
+  uaCyr2Lat["я"] = "ja";
 // Delete unused letters;
-  UA_CYR_TO_LAT_DICT.remove("Ё");
-  UA_CYR_TO_LAT_DICT.remove("ё");
-  UA_CYR_TO_LAT_DICT.remove("Ъ");
-  UA_CYR_TO_LAT_DICT.remove("ъ");
-  UA_CYR_TO_LAT_DICT.remove("Ы");
-  UA_CYR_TO_LAT_DICT.remove("ы");
-  UA_CYR_TO_LAT_DICT.remove("Э");
-  UA_CYR_TO_LAT_DICT.remove("э");
+  uaCyr2Lat.remove("Ё");
+  uaCyr2Lat.remove("ё");
+  uaCyr2Lat.remove("Ъ");
+  uaCyr2Lat.remove("ъ");
+  uaCyr2Lat.remove("Ы");
+  uaCyr2Lat.remove("ы");
+  uaCyr2Lat.remove("Э");
+  uaCyr2Lat.remove("э");
 
 // Update for Ukrainian letters
-  UA_CYR_TO_LAT_DICT
+  uaCyr2Lat
       .addAll({"Ґ": "G", "ґ": "g", "Є": "Je", "є": "je", "І": "I", "і": "i", "Ї": "Ï", "ї": "ï"});
 
 // Latin to Cyrillic
-  UA_LAT_TO_CYR_DICT = UA_CYR_TO_LAT_DICT.kvSwap();
+  uaLat2Cyr = uaCyr2Lat.kvSwap();
 
 // This version of Mongolian Latin <-> Cyrillic is based on  MNS 5217:2012
 // as far as I know this is the latest standard. Imform me @ https://github.com/Serbipunk
 // https://gogo.mn/r/101115
 // https://en.wikipedia.org/wiki/Mongolian_Cyrillic_alphabet
-  MN_CYR_TO_LAT_DICT = {
+  mnCyr2Lat = {
     "А": "A", "а": "a",
     "Э": "E", "э": "e",
     "И": "I", "и": "i", // i
@@ -423,8 +423,8 @@ void mappingInit() {
     "Ю": "Yu", "ю": "yu", // lat 8
     "Я": "Ya", "я": "ya", // lat 9
   };
-  MN_LAT_TO_CYR_DICT = MN_CYR_TO_LAT_DICT.kvSwap();
-  MN_LAT_TO_CYR_DICT.addAll({
+  mnLat2Cyr = mnCyr2Lat.kvSwap();
+  mnLat2Cyr.addAll({
     "I": "И",
     "i": "и",
     "Sh": "Ш",
@@ -432,46 +432,46 @@ void mappingInit() {
   });
 
 // Bundle up all the dictionaries in a lookup dictionary
-  TRANSLIT_DICT = {
+  translitDict = {
     'sr': {
       // Serbia
-      'tolatin': SR_CYR_TO_LAT_DICT,
-      'tocyrillic': SR_LAT_TO_CYR_DICT,
+      'tolatin': srCyr2lat,
+      'tocyrillic': srLat2Cyr,
     },
     'me': {
       // Montenegro
-      'tolatin': ME_CYR_TO_LAT_DICT,
-      'tocyrillic': ME_LAT_TO_CYR_DICT,
+      'tolatin': meCyr2Lat,
+      'tocyrillic': meLat2Cyr,
     },
     'mk': {
       // Macedonia
-      'tolatin': MK_CYR_TO_LAT_DICT,
-      'tocyrillic': MK_LAT_TO_CYR_DICT
+      'tolatin': mkCyr2Lat,
+      'tocyrillic': mkLat2Cyr
     },
     'ru': {
       // Russian
-      'tolatin': RU_CYR_TO_LAT_DICT,
-      'tocyrillic': RU_LAT_TO_CYR_DICT,
+      'tolatin': ruCyr2Lat,
+      'tocyrillic': ruLat2Cyr,
     },
     'tj': {
       // Tajik
-      'tolatin': TJ_CYR_TO_LAT_DICT,
-      'tocyrillic': TJ_LAT_TO_CYR_DICT,
+      'tolatin': tjCyr2Lat,
+      'tocyrillic': tjLat2Cyr,
     },
     'bg': {
       // Bulgarian
-      'tolatin': BG_CYR_TO_LAT_DICT,
-      'tocyrillic': BG_LAT_TO_CYR_DICT,
+      'tolatin': bgCyr2Lat,
+      'tocyrillic': bgLat2Cyr,
     },
     'ua': {
       // Ukrainian
-      'tolatin': UA_CYR_TO_LAT_DICT,
-      'tocyrillic': UA_LAT_TO_CYR_DICT,
+      'tolatin': uaCyr2Lat,
+      'tocyrillic': uaLat2Cyr,
     },
     'mn': {
       // Mongolian
-      'tolatin': MN_CYR_TO_LAT_DICT,
-      'tocyrillic': MN_LAT_TO_CYR_DICT,
+      'tolatin': mnCyr2Lat,
+      'tocyrillic': mnLat2Cyr,
     },
   };
 

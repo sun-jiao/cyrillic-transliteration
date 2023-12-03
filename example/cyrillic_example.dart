@@ -1,5 +1,6 @@
 import 'package:cyrillic/cyrillic.dart';
 
 void main() {
-  print('See testcases');
+  final serbianAlphabetCyrillic = 'АаБбВвГгДдЂђЕеЖжЗзИиЈјКкЛлЉљМмНнЊњОоПпРрСсТтЋћУуФфХхЦцЧчЏџШш';
+  print(cyrillic2Latin(serbianAlphabetCyrillic));
 }

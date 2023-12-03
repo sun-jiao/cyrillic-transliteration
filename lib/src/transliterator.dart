@@ -9,10 +9,10 @@ String cyrillic2Latin(String stringToTransliterate, {String langCode = 'sr'}) {
   mappingInit();
 // First check if we support the cyrillic alphabet we want to transliterate to latin.
 
-  if (!TRANSLIT_DICT.containsKey(langCode.toLowerCase())) {
+  if (!translitDict.containsKey(langCode.toLowerCase())) {
 // If we don't support it, then just return the original string.
     return stringToTransliterate;
-  } else if (!TRANSLIT_DICT[langCode.toLowerCase()]!.containsKey('tolatin')) {
+  } else if (!translitDict[langCode.toLowerCase()]!.containsKey('tolatin')) {
     // If we do support it, check if the implementation is not missing before proceeding.
     return stringToTransliterate;
   }
@@ -20,7 +20,7 @@ String cyrillic2Latin(String stringToTransliterate, {String langCode = 'sr'}) {
 // Everything checks out, proceed with transliteration.
 
 // Get the character per character transliteration dictionary
-  final transliterationDict = TRANSLIT_DICT[langCode.toLowerCase()]!['tolatin']!;
+  final transliterationDict = translitDict[langCode.toLowerCase()]!['tolatin']!;
 
 // Initialize the output latin string variable
   String latinizedStr = '';
@@ -50,24 +50,24 @@ String latin2Cyrillic(String stringToTransliterate, {String langCode = 'sr'}) {
 
   mappingInit();
 
-  if (!TRANSLIT_DICT.containsKey(langCode.toLowerCase())) {
+  if (!translitDict.containsKey(langCode.toLowerCase())) {
 // If we don't support it, then just return the original string.
     return stringToTransliterate;
-  } else if (!TRANSLIT_DICT[langCode.toLowerCase()]!.containsKey('tolatin')) {
+  } else if (!translitDict[langCode.toLowerCase()]!.containsKey('tolatin')) {
 // If we do support it, check if the implementation is not missing before proceeding.
     return stringToTransliterate;
   }
 // First check if we support the cyrillic alphabet we want to transliterate to latin.
-  if (!TRANSLIT_DICT.containsKey(langCode.toLowerCase())) {
+  if (!translitDict.containsKey(langCode.toLowerCase())) {
 // If we don't support it, then just return the original string.
     return stringToTransliterate;
-  } else if (!TRANSLIT_DICT[langCode.toLowerCase()]!.containsKey('tocyrillic')) {
+  } else if (!translitDict[langCode.toLowerCase()]!.containsKey('tocyrillic')) {
 // If we do support it, check if the implementation is not missing before proceeding.
     return stringToTransliterate;
   }
 
 // Get the character per character transliteration dictionary
-  final transliterationDict = TRANSLIT_DICT[langCode.toLowerCase()]!['tocyrillic']!;
+  final transliterationDict = translitDict[langCode.toLowerCase()]!['tocyrillic']!;
 
 // Initialize the output cyrillic string variable
   String cyrillicStr = '';
@@ -90,10 +90,10 @@ String latin2Cyrillic(String stringToTransliterate, {String langCode = 'sr'}) {
       cPlus1 = stringToTransliterate[index + 1];
     }
 
-    String cPlus2 = '';
-    if (index + 2 <= lengthOfStringToTransliterate - 1) {
-      cPlus2 = stringToTransliterate[index + 2];
-    }
+    // String cPlus2 = '';
+    // if (index + 2 <= lengthOfStringToTransliterate - 1) {
+    //   cPlus2 = stringToTransliterate[index + 2];
+    // }
 
     if (((c == 'L' || c == 'l') && cPlus1 == 'j') ||
         ((c == 'N' || c == 'n') && cPlus1 == 'j') ||
@@ -195,5 +195,5 @@ List supported() {
 // ''' Returns list of supported languages, sorted alphabetically.
 //     :return:
 //     '''
-  return TRANSLIT_DICT.keys.toList();
+  return translitDict.keys.toList();
 }

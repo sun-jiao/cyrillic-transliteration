@@ -1,7 +1,7 @@
 name: cyrillic
-description: A starting point for Dart libraries or applications.
+description:  Transliterate Cyrillic script to Latin script and vice versa.
 version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+repository: https://github.com/sun-jiao/cyrillic
 
 environment:
   sdk: ^3.2.2
