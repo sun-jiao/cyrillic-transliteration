@@ -1,23 +1,23 @@
 import 'package:deepcopy/deepcopy.dart';
 
 bool isInited = false;
-late Map srCyr2lat;
-late Map srLat2Cyr;
-late Map meCyr2Lat;
-late Map meLat2Cyr;
-late Map mkCyr2Lat;
-late Map mkLat2Cyr;
-late Map ruCyr2Lat;
-late Map ruLat2Cyr;
-late Map tjCyr2Lat;
-late Map tjLat2Cyr;
-late Map bgCyr2Lat;
-late Map bgLat2Cyr;
-late Map uaCyr2Lat;
-late Map uaLat2Cyr;
-late Map mnCyr2Lat;
-late Map mnLat2Cyr;
-late Map translitDict;
+late Map<String, String> srCyr2lat;
+late Map<String, String> srLat2Cyr;
+late Map<String, String> meCyr2Lat;
+late Map<String, String> meLat2Cyr;
+late Map<String, String> mkCyr2Lat;
+late Map<String, String> mkLat2Cyr;
+late Map<String, String> ruCyr2Lat;
+late Map<String, String> ruLat2Cyr;
+late Map<String, String> tjCyr2Lat;
+late Map<String, String> tjLat2Cyr;
+late Map<String, String> bgCyr2Lat;
+late Map<String, String> bgLat2Cyr;
+late Map<String, String> uaCyr2Lat;
+late Map<String, String> uaLat2Cyr;
+late Map<String, String> mnCyr2Lat;
+late Map<String, String> mnLat2Cyr;
+late Map<String, Map<String, Map<String, String>>> translitDict;
 
 void mappingInit() {
   if (isInited) {
