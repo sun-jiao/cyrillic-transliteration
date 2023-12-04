@@ -1,10 +1,10 @@
 name: cyrtranslit
 description:  Transliterate Cyrillic script to Latin script and vice versa.
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/sun-jiao/cyrillic-transliteration
 
 environment:
-  sdk: ^3.2.2
+  sdk: ">=3.0.0 <4.0.0"
 
 # Add regular dependencies here.
 dependencies:
