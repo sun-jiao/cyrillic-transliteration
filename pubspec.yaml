@@ -9,9 +9,6 @@ environment:
 # Add regular dependencies here.
 dependencies:
   # path: ^1.8.0
-  deepcopy:
-    git:
-      url: https://github.com/sun-jiao/deepcopy
 
 dev_dependencies:
   lints: ^2.1.0

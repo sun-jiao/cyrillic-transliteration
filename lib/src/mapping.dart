@@ -1,5 +1,3 @@
-import 'package:deepcopy/deepcopy.dart';
-
 bool isInited = false;
 late Map<String, String> srCyr2lat;
 late Map<String, String> srLat2Cyr;
@@ -483,5 +481,15 @@ extension<K, V> on Map<K, V> {
     final List<MapEntry<K, V>> list = entries.toList();
     return Map.fromEntries(
         List.generate(list.length, (index) => MapEntry(list[index].value, list[index].key)));
+  }
+
+  Map<K, V> deepcopy() {
+    final Map<K, V> map = <K, V>{};
+
+    forEach((key, value) {
+      map[key] = value;
+    });
+
+    return map;
   }
 }
