@@ -1,5 +1,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7734906.svg)](https://doi.org/10.5281/zenodo.7734906)
 
+Please note: Sun Jiao (the author of this repository) has no knowledge of any languages ​​that use the Cyrillic alphabet.  Any issues related to linguistics should be reported directly to the Python repository, and this repository will follow up after it is updated.
+
 ## What is CyrTranslit?
 A Dart package for bi-directional transliteration of Cyrillic script to Latin script and vice versa.
 
